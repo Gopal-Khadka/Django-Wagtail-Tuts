@@ -29,6 +29,20 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "django_htmx",
+    # wagtail apps
+    "wagtail.contrib.forms",
+    "wagtail.contrib.redirects",
+    "wagtail.embeds",
+    "wagtail.sites",
+    "wagtail.users",
+    "wagtail.snippets",
+    "wagtail.documents",
+    "wagtail.images",
+    "wagtail.search",
+    "wagtail.admin",
+    "wagtail",
+    "modelcluster",
+    "taggit",
     # my apps
     # django-cleanup
     "django_cleanup.apps.CleanupConfig",
@@ -44,6 +58,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -130,3 +145,10 @@ LOGIN_REDIRECT_URL = "/"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 ACCOUNT_LOGIN_METHODS = {"email"}
 ACCOUNT_SIGNUP_FIELDS = ["email*"]
+
+
+# Wagtail config
+WAGTAIL_SITE_NAME = 'My Wagtail Site'
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10_000
+WAGTAILDOCS_EXTENSIONS = ['csv', 'docx', 'key', 'odt', 'pdf', 'pptx', 'rtf', 'txt', 'xlsx', 'zip']
+WAGTAILADMIN_BASE_URL = 'http://localhost:8000'
