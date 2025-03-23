@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "django_htmx",
+    "django_cotton",
     # wagtail apps
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -44,6 +45,8 @@ INSTALLED_APPS = [
     "modelcluster",
     "taggit",
     # my apps
+    "blog_site",
+    "home",
     # django-cleanup
     "django_cleanup.apps.CleanupConfig",
 ]
@@ -58,7 +61,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
     "allauth.account.middleware.AccountMiddleware",
-    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -66,8 +69,8 @@ ROOT_URLCONF = "core.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
-        "APP_DIRS": True,
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": False,
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
@@ -75,6 +78,17 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
+            "loaders": [
+                (
+                    "django.template.loaders.cached.Loader",
+                    [
+                        "django_cotton.cotton_loader.Loader",
+                        "django.template.loaders.filesystem.Loader",
+                        "django.template.loaders.app_directories.Loader",
+                    ],
+                )
+            ],
+            "builtins": ["django_cotton.templatetags.cotton"],
         },
     },
 ]
@@ -148,7 +162,18 @@ ACCOUNT_SIGNUP_FIELDS = ["email*"]
 
 
 # Wagtail config
-WAGTAIL_SITE_NAME = 'My Wagtail Site'
+WAGTAIL_SITE_NAME = "My Wagtail Site"
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10_000
-WAGTAILDOCS_EXTENSIONS = ['csv', 'docx', 'key', 'odt', 'pdf', 'pptx', 'rtf', 'txt', 'xlsx', 'zip']
-WAGTAILADMIN_BASE_URL = 'http://localhost:8000'
+WAGTAILDOCS_EXTENSIONS = [
+    "csv",
+    "docx",
+    "key",
+    "odt",
+    "pdf",
+    "pptx",
+    "rtf",
+    "txt",
+    "xlsx",
+    "zip",
+]
+WAGTAILADMIN_BASE_URL = "http://localhost:8000"
