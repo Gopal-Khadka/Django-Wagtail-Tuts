@@ -1,0 +1,34 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+<c-layouts.base>
+  <div class="max-w-4xl mx-auto px-8 py-24">
+    <h1>{{page.title}}</h1>
+    <a href="" class="flex items-center gap-1 mb-2">
+      <img
+        class="h-8 w-8 rounded-full object-cover"
+        src="{{page.owner.wagtail_userprofile.avatar.url}}"
+        alt="Avatar"
+      />
+      {{page.owner.get_full_name}}
+    </a>
+    <p class="text-sm text-neutral-500">{{page.date}}</p>
+    <p class="text-2xl font-serif italic">{{page.intro}}</p>
+
+    <div class="mb-8">
+      <figure>
+        {% image page.image original class="w-full" %}
+      </figure>
+
+      {% if page.caption %}
+        <figcaption class="text-sm text-neutral-500 text-center mt-2 mb-4">
+          {{page.caption}}
+        </figcaption>
+      {% endif %}
+    </div>
+
+    <p>{{page.body|richtext}}</p>
+
+    <div class="mt-4 inline-block">
+      <a href="{{page.get_parent.url }}" class="underline">Return to blog</a>
+    </div>
+  </div>
+</c-layouts.base>

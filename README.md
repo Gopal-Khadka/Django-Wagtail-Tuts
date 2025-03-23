@@ -26,3 +26,11 @@ Each page type *(a.k.a. content type)* in Wagtail is represented by a Django mod
 **Summary**:
 - Page Model: A class that defines a specific type of page in Wagtail, including its fields and behavior.
 - content_panels: A list that specifies how the fields of the page model are displayed in the Wagtail admin interface, allowing for customization of the editing experience.
+
+2. **Adding child page**
+- New page model `ArticlePage` is added to models.py
+- New `Blog` is added as `root` page and new `article` is nested under it.
+- Respective templates are added to the `blog_site` folder under `templates` directory.
+- Pages are made dynamic using  `variable` objects i.e `page` which represents the instance of model.
+  
+In the article page, all the contents are displayed as article. Refer t `article_page.html` for more.
