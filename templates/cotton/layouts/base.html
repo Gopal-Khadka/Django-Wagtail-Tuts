@@ -8,6 +8,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="{% static "js/htmx.min.js" %}"></script>
     <script src="{% static "js/hyperscript.min.js" %}"></script>
+
+    <style>
+        .article iframe{
+            width:100%;
+            height: 470px;
+            border-radius: 15px;
+            margin-top:50px;
+        }
+    </style>
 </head>
 <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' class="bg-black text-white">
     {{slot}}

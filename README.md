@@ -34,3 +34,9 @@ Each page type *(a.k.a. content type)* in Wagtail is represented by a Django mod
 - Pages are made dynamic using  `variable` objects i.e `page` which represents the instance of model.
   
 In the article page, all the contents are displayed as article. Refer t `article_page.html` for more.
+
+3. **Populate the blog page with articles**
+-  Use dyanmic prop passing to pass `article` to article component
+-  Render image tag using `wagtail images` template mentioning fill (width * height) and class.
+-  Use `pageurl` template tag for showing blog link
+-  Reverse the article cards by `publosh date` on the blog page.

@@ -1,12 +1,11 @@
 {% load wagtailcore_tags %}
 <c-layouts.base>
   <div class="max-w-[1600px] mx-auto px-8 py-24">
-    <h1 class="text-4xl font-bold">{{page.title}}</h1>
-    {{ page.body|richtext }}
 
     <div class="grid mt-8 gap-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {% for i in "four" %}
-      <c-article-card />
+      {% for article in articles %}
+        <c-article-card :article=article>
+        </c-article-card/>
       {% endfor %}
     </div>
   </div>
