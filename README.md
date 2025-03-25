@@ -40,3 +40,10 @@ In the article page, all the contents are displayed as article. Refer t `article
 -  Render image tag using `wagtail images` template mentioning fill (width * height) and class.
 -  Use `pageurl` template tag for showing blog link
 -  Reverse the article cards by `publosh date` on the blog page.
+
+
+4. **Add Tags and Search**
+- Add `Article Tag` model to specify tags for the articles. [Link](https://docs.wagtail.org/en/stable/advanced_topics/tags.html#adding-tags-to-a-page-model)
+- Add filter by *tags* feature to show only articles with given `tag`.
+- Add `Search Icon` and `bar` to search the text in the blogs
+- 
