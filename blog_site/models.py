@@ -45,7 +45,7 @@ class ArticlePage(Page):
 
     def serve(self, request, *args, **kwargs):
         # This method is called each time when page is served
-        session_key = f"article_viewed_{self.pk}" # set session cookie to prevent re-increment in views
+        session_key = f"article_viewed_{self.pk}"  # set session cookie to prevent re-increment in views
 
         if not request.session.get(session_key, False):
             # check if the session cookie is already set before
@@ -53,6 +53,10 @@ class ArticlePage(Page):
             request.session[session_key] = True
 
         return super().serve(request, *args, **kwargs)
+
+    def image_url(self):
+        # for image to be shown in twitter card when user shares the article
+        return self.image.get_rendition("fill-1200x675|jpegquality-80").url
 
     def increment_view_count(self):
         self.views += 1

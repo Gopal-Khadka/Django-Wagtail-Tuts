@@ -54,3 +54,5 @@ In the article page, all the contents are displayed as article. Refer t `article
 - Add new field `views` to the articles and increment function.
 - To avoid incrementing the views when viewed multiple times by same user, we use `session` key to check if the current user has already viewed it.
 - Add `views` component to article page and card.
+- Add meta tags to base page only if the page is rendered as article page
+- Add **image_url** property to article so that it can be shown while sharing in social media

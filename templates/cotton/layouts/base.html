@@ -4,6 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if page %}
+        {% comment %} If this page is article only, then {% endcomment %}
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="{{page.title}}" />
+        <meta property="og:url" content="{{request.build_absolute_uri }}" />
+        <meta property="og:description" content="{{page.intro}}" />
+        <meta property="og:image" content="{{page.image_url}}" />
+        <meta name="twitter:card" content="summary_large_image" />
+    {% endif %}
+
     <title>Wagtail Blog</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="{% static "js/htmx.min.js" %}"></script>
