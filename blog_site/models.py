@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import date
+from operator import attrgetter
 from wagtail.models import Page
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
@@ -20,7 +21,9 @@ class BlogPage(Page):
         # You can use "articles" context in above defined template file
         context = super().get_context(request)
         tag = request.GET.get("tag")
-        articles = ArticlePage.objects.live().order_by("-first_published_at")
+        articles = ArticlePage.objects.live()
+        # reversing the articles by "first_published_at" attribute
+        articles = sorted(articles, key=attrgetter("first_published_at"), reverse=True)
         if tag:
             articles = articles.filter(tags__name=tag)
             context["tag"] = tag
@@ -38,6 +41,16 @@ class ArticlePage(Page):
     # SO you can't find related articles from the image
     caption = models.CharField(blank=True, max_length=80)
     tags = ClusterTaggableManager(through="ArticleTag", blank=True)
+
+    def get_author(self):
+        return self.owner.get_full_name()
+
+    search_fields = Page.search_fields + [
+        index.SearchField("intro"),
+        index.SearchField("body"),
+        index.SearchField("tags"),
+        index.SearchField("get_author"),
+    ]
 
     content_panels = Page.content_panels + [
         FieldPanel("intro"),

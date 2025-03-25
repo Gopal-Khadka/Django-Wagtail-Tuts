@@ -1,17 +1,25 @@
 {% load wagtailcore_tags %}
 <c-layouts.base>
   <div class="max-w-[1600px] mx-auto px-8 py-24">
-    <c-search-bar />
+    <c-search-bar search_query={{search_query}} />
     {% if tag %}
-      <div class="text-neutral-400 text-2xl">
-        Articles tagged: <span class="font-bold">{{tag}}</span> 
-      </div>
-    {% endif %}
-
-    <div class="grid mt-8 gap-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {% for article in articles %}
-        <c-article-card :article=article />
-      {% endfor %}
+    <div class="text-neutral-400 text-2xl">
+      Articles tagged: <span class="font-bold">{{tag}}</span> 
     </div>
-  </div>
+    {% endif %}
+    
+    {% if articles %}
+      <div class="grid mt-8 gap-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {% for article in articles %}
+          <c-article-card :article=article />
+        {% endfor %}
+      </div>
+
+      {% else %}
+        <h2 class="font-bold text-3xl text-center">No articles found.</h2>
+      {% endif %}
+    </div>
+  
+
+
 </c-layouts.base>

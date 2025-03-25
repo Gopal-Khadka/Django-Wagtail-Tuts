@@ -45,5 +45,6 @@ In the article page, all the contents are displayed as article. Refer t `article
 4. **Add Tags and Search**
 - Add `Article Tag` model to specify tags for the articles. [Link](https://docs.wagtail.org/en/stable/advanced_topics/tags.html#adding-tags-to-a-page-model)
 - Add filter by *tags* feature to show only articles with given `tag`.
-- Add `Search Icon` and `bar` to search the text in the blogs
-- 
+- Add `Search Icon` and `bar` to search the text in the blogs and make it functional.
+- Add list of `fields` from the page model to be indexed/searched.
+- **Note**: `update_index` command must be re-run after each change in the search indices in the `Page` model.
