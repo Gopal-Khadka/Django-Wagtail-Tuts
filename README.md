@@ -48,3 +48,9 @@ In the article page, all the contents are displayed as article. Refer t `article
 - Add `Search Icon` and `bar` to search the text in the blogs and make it functional.
 - Add list of `fields` from the page model to be indexed/searched.
 - **Note**: `update_index` command must be re-run after each change in the search indices in the `Page` model.
+
+
+5. **Article Count and Social Media Sharing**
+- Add new field `views` to the articles and increment function.
+- To avoid incrementing the views when viewed multiple times by same user, we use `session` key to check if the current user has already viewed it.
+- Add `views` component to article page and card.

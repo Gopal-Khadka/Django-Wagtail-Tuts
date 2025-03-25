@@ -14,7 +14,10 @@
     {% if page.tags %} 
       <c-button-pills :tags=page.tags.all />
     {% endif %}
-    <p class="text-sm text-neutral-500 mt-2">{{page.date}}</p>
+    <div class="flex justify-between items-center">
+      <p class="text-sm text-neutral-500 mt-2">{{page.date}}</p>
+      <c-article-viewcount viewcount={{page.views}} />
+    </div>
     <p class="text-2xl font-serif italic">{{page.intro}}</p>
 
     

@@ -41,6 +41,22 @@ class ArticlePage(Page):
     # SO you can't find related articles from the image
     caption = models.CharField(blank=True, max_length=80)
     tags = ClusterTaggableManager(through="ArticleTag", blank=True)
+    views = models.PositiveIntegerField(default=0, editable=False)
+
+    def serve(self, request, *args, **kwargs):
+        # This method is called each time when page is served
+        session_key = f"article_viewed_{self.pk}" # set session cookie to prevent re-increment in views
+
+        if not request.session.get(session_key, False):
+            # check if the session cookie is already set before
+            self.increment_view_count()
+            request.session[session_key] = True
+
+        return super().serve(request, *args, **kwargs)
+
+    def increment_view_count(self):
+        self.views += 1
+        self.save(update_fields=["views"])  # only update views field
 
     def get_author(self):
         return self.owner.get_full_name()

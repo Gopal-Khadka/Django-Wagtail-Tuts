@@ -11,11 +11,14 @@
       <p>{{article.specific.intro}}</p>
     </div>
     <div>
-      <p class="text-sm text-neutral-500">{{article.specific.date}}</p>
+      <div class="flex justify-between items-center mb-2">
+        <p class="text-sm text-neutral-500">{{article.specific.date}}</p>
+        <c-article-viewcount viewcount="{{article.specific.views}}" />
+      </div>
       <figure class="mb-4">
         {% image article.specific.image fill-314x166 class="w-full rounded-lg"%}
       </figure>
-      
+
       <span class="hover:underline">Read more</span>
     </div>
   </a>
